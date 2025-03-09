@@ -1,0 +1,33 @@
+﻿@model Entity.Concreate.Kitap
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kitap Ekle</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.Label("Kitap Adı")
+        @Html.TextBoxFor(m => m.KitapAdi, new { @class = "form-control" })
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Stok Miktarı")
+        @Html.TextBoxFor(m => m.Stok, new { @class = "form-control" })
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Fiyat")
+        @Html.TextBoxFor(m => m.Fiyat, new { @class = "form-control" })
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Kategoriler")
+        @Html.DropDownListFor(x => x.KategoriId, (List<SelectListItem>)ViewBag.d, new { @class = "form-control" })
+    </div>
+    <br />
+    <button type="submit" class="btn btn-danger">Oluştur</button>
+}
+

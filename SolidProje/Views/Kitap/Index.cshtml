@@ -1,0 +1,45 @@
+﻿@using Entity.Concreate
+@model List<Kitap>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kitap Listele</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Kitap Adı</th>
+            <th>Stok Miktarı</th>
+            <th>Fiyatı</th>
+            <th>Kategori</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.KitapId</td>
+                <td>@item.KitapAdi</td>
+                <td>@item.Stok</td>
+                <td>@item.Fiyat</td>
+                <td>@item.Kategori.KategoriAdi</td>
+                <td>
+                    @Html.ActionLink("Sil", "Delete", new { id = item.KitapId }, new { @class = "btn btn-danger btn-sm"})
+                    @Html.ActionLink("Sat", "KitapSat", new { id = item.KitapId }, new { @class = "btn btn-success btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="btn-group" role="group">
+    <a href="@Url.Action("Create")" class="btn btn-info">Yeni Ürün Ekle</a>
+    <a href="@Url.Action("KitapSat")" class="btn btn-warning">Kitap Sat</a>
+    <a href="@Url.Action("Delete")" class="btn btn-dark">Kitap Sil</a>
+</div>
+

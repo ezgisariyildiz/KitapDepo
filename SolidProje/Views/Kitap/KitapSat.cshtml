@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "KitapSat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kitap Sat</h2>
+
+@if (ViewBag.Mesaj != null)
+{
+    <div class="alert alert-danger">@ViewBag.Mesaj</div>
+}
+
+<form method="post" action="@Url.Action("KitapSat", "Kitap")">
+    <div class="form-group">
+        <label>Kitap Seç:</label>
+        <select name="kitapId" class="form-control">
+            @foreach (var item in ViewBag.Kitaplar)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Müşteri Seç:</label>
+        <select name="musteriId" class="form-control">
+            @foreach (var item in ViewBag.Musteriler)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Adet:</label>
+        <input type="number" name="adet" class="form-control" required min="1">
+    </div>
+
+    <div class="form-group">
+        <label>Toplam Tutar:</label>
+        <input type="number" name="tutar" class="form-control" readonly id="toplamTutar" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Satış Yap</button>
+</form>
+

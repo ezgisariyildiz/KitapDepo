@@ -1,0 +1,38 @@
+﻿@model List<Entity.Concreate.Kitap>
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kitap Sil</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Kitap Adı</th>
+            <th>Stok Miktarı</th>
+            <th>Fiyatı</th>
+            <th>Kategori</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kitap in Model)
+        {
+            <tr>
+                <td>@kitap.KitapId</td>
+                <td>@kitap.KitapAdi</td>
+                <td>@kitap.Stok</td>
+                <td>@kitap.Fiyat</td>
+                <td>@kitap.Kategori.KategoriAdi</td>
+                <td>
+                    <form method="post" asp-action="Delete">
+                        <input type="hidden" name="id" value="@kitap.KitapId" />
+                        <button type="submit" class="btn btn-danger">Sil</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
